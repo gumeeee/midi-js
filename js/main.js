@@ -1,8 +1,29 @@
 //Function para ativar o som das teclas
-function tocaSomPom() {
-  document.querySelector('#som_tecla_pom').play();
+function tocaSom(idElementAudio) {
+  document.querySelector(idElementAudio).play();
 } 
+//Const para pegar a lista de teclas
+const listaDeTeclas = document.querySelectorAll('.tecla');
 
-//Eventos para ativar o som das teclas
-document.querySelector('.tecla_pom').onclick = tocaSomPom;
+let contador = 0;
 
+//while = enquanto
+while (contador < listaDeTeclas.length) {
+
+  const tecla = listaDeTeclas[contador]
+  const instrumento = tecla.classList[1];
+
+  //template string
+  const idAudio = `#som_${instrumento}`;
+
+  //console.log(idAudio);
+
+  //'som_{instrumento}' 
+  tecla.onclick = function () {
+    tocaSom(idAudio);
+  };
+
+  contador = contador + 1;
+
+  //console.log(contador);
+}
